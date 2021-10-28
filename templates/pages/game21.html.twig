@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}Robins Game 21 sida{% endblock %}
+{% block body %}
+    {% block heading %}<h1>Game 21</h1>{% endblock %}
+
+    <!-- Rounds -->
+    {# <div class="result__outer-wrapper">
+        <div class="result__inner-wrapper">
+            -> Du har vunnit totalt <b>{{ playerRoundsWon }}</b> rundor. 
+        </div>
+
+        <div class="result__inner-wrapper">
+            -> Datorn har vunnit totalt <b>{{ playerRoundsWon }}</b> rundor.
+        </div>
+    </div> #}
+
+    <!-- Round result message -->
+    <div class="notification__outer-wrapper">
+        {% if roundMessage is empty %}
+            Då börjar vi spela! Välj tärning och klicka rulla!
+        {% endif %}
+        {{ roundMessage }}
+    </div>
+
+    <!-- Player form -->
+    <form method="post" action="{{ path('game21FormProcessing') }}" class="form__main">
+        <div class="form__radiobtn-wrapper">
+            <h3>Rulla tärningar</h3>
+            <div class="radiobtn__inner-wrapper">
+                <input type="radio" name="radiobtn__dice" value="1" class="form__radiobtn" checked>
+                <label for="1">1 tärning</label>
+            </div>
+
+            <div class="radiobtn__inner-wrapper">
+                <input type="radio" name="radiobtn__dice" value="2" class="form__radiobtn">
+                <label for="2">2 tärningar</label>
+            </div>
+        </div>
+        <div class="form__btn-wrapper">
+            {% if validRound == true %}
+                <input type="submit" name="roll" value="Rulla" class="btn__dice-roll"/>
+                <input type="submit" name="stay" value="Stanna" class="btn__dice-roll"/>
+            {% endif %}
+            <input type="submit" name="reset" value="Starta om" class="btn__dice-roll"/>
+        </div>
+    </form>
+{% endblock %}

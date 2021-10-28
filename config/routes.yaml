@@ -1,3 +1,7 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+# IndexController:
+#   path: /
+#   controller: App\Controller\IndexController::homepage
+
+# test:
+#   path: /test
+#   controller: App\Controller\IndexController::show

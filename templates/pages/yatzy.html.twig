@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}New title{% endblock %}
+{% block body %}
+    {% block heading %}<h1>Yatzy</h1>{% endblock %}
+    CurrThrow: {{ currThrow }}
+    CurrDiceAmount: {{ currDiceAmount }}
+    
+    {# Form #}
+    {% if currentRound < 7 %}
+        {% if finishedRound == true %}
+            Round: {{ currentRound }}. Get as many {{ currentRound }}:s as you can.
+
+            <form method="post" action="{{ path('yatzyFormProcessing') }}">
+                <input type="checkbox" name="c1">
+                <input type="submit" name="submit" value="Roll" />
+            </form>
+        {% else %}
+            You finished the round with {{ currSum }} points.
+            {{ app.session.set('yatzy_current_round', + 1) }}
+            {{ app.session.set('yatzy_current_throw', 0) }}
+            
+            <form method="post" action="{{ path('yatzyFormProcessing') }}">
+                <input type="submit" name="next_round" value="Next round"/>
+            </form>
+        {% endif %}
+    {% else %}
+        You finished your game with {{ currSum }} points.
+        <form method="post" action="{{ path('yatzyFormProcessing') }}">
+            <input type="submit" name="reset_full_game" value="Start a new game"/>
+        </form>
+    {% endif %}
+{% endblock %}
+
+{# app.session.set('test', 1) #}
+{# {{ dump(app.session.get('test')) }} #}
+
+{# {{ app.session.set('test', 'Apple') }}
+{{ app.session.get('test') }} // return Apple #}
