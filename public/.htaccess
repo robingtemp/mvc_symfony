@@ -1,6 +1,7 @@
 # RewriteEngine On
 # RewriteCond %{REQUEST_FILENAME} !-f
 # RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ index.php/$1 [L]
 
 #
 # This is a modified rewrite to fit when working on both local development
@@ -14,7 +15,7 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 # RewriteRule ^(.*)$ index.php/$1 [L]
-# RewriteRule (.*) - [NC,L]
+RewriteRule (.*) - [NC,L]
 
 
 # Rewrite 1 - For request via www.student.bth.se
